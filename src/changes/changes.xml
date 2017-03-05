@@ -95,6 +95,42 @@ The <action> type attribute can be add,update,fix,remove.
         Correct the name of the configuration attribute
         softMinEvictableIdleTimeMillis.
       </action>
+      <action dev="markt" type="fix" issue="DBCP-472">
+        Avoid potential infinite loops when checking if an SQLException is fatal
+        for a connection or not.
+      </action>
+      <action dev="markt" type="fix" issue="DBCP-468">
+        Expand the fail-fast for fatal connection errors feature to include
+        managed connections.
+      </action>
+      <action dev="markt" type="fix" issue="DBCP-463">
+        Correct a typo in the method name
+        PoolableConnectionFactory#setMaxOpenPreparedStatements. The old method
+        remains but is deprecated so not to break clients currently using the
+        incorrect name.
+      </action>
+       <action dev="markt" type="add" issue="DBCP-462" due-to="Keiichi Fujino">
+         Refactoring to prepare for a future patch to enable pooling of all
+         prepared and callable statements in PoolingConnection.
+       </action>
+       <action dev="markt" type="fix" issue="DBCP-459">
+         Ensure that a thread's interrupt status is visible to the caller if the
+         thread is interrupted during a call to
+         PoolingDataSource.getConnection().
+       </action>
+       <action dev="markt" type="add" issue="DBCP-458" due-to="Adrian Tarau">
+         Make it simpler to extend BasicDataSource to allow sub-classes to
+         provide custom GenericObjectPool implementations.
+       </action>
+       <action dev="markt" type="fix" issue="DBCP-457">
+         When using a BasicDataSource, pass changes related to the handling of
+         abandoned connections to the underlying pool so that the pool
+         configuration may be updated dynamically. 
+       </action>
+       <action dev="markt" type="add" issue="DBCP-474" due-to="Keiichi Fujino">
+         Enable pooling of all prepared and callable statements
+         inPoolingConnection.
+       </action>
     </release>
     <release version="2.1.1" date="6 Aug 2015" description=
 "This is a patch release, including bug fixes only.">
